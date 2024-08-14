@@ -23,7 +23,7 @@ const Sidebar = () => {
   return (
     <div className="w-1/6 min-w-[200px]">
       <div className="flex justify-end items-center mb-3 bg-blue-700 h-16 p-4">
-        <GiHamburgerMenu size={25} color="#fff" className="cursor-pointer" />
+        <GiHamburgerMenu size={23} color="#fff" className="cursor-pointer" />
       </div>
       <div className="w-full">
         <ul className="px-2">
@@ -50,11 +50,8 @@ const Sidebar = () => {
               {activeMenu === index && menu.subMenu && (
                 <ul className="ms-9 list-disc">
                   {menu.subMenu.map((subMenu, subIndex) => (
-                    <li
-                      key={subIndex}
-                      className="p-2 cursor-pointer hover:text-blue-800"
-                    >
-                      <Typography className="text-sm hover:font-bold">
+                    <li key={subIndex} className="p-2 cursor-pointer ">
+                      <Typography className="text-sm hover:text-blue-800 hover:font-bold">
                         {subMenu.title}
                       </Typography>
                     </li>
