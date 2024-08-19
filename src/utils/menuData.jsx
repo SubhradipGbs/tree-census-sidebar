@@ -39,12 +39,12 @@ const menuData = [
     subMenu: [
       {
         title: "Tree Cutting/Pruning",
-        link: "/settings/profile",
+        link: "/forms",
         roles: ["user"],
       },
       {
-        title: "Online Payment",
-        link: "/settings/profile",
+        title: "Payments",
+        link: "/payment-forms",
         roles: ["user"],
       },
     ],
@@ -60,7 +60,7 @@ const menuData = [
         roles: ["user"],
       },
       {
-        title: "Online Payment",
+        title: "Payment Status",
         link: "/settings/profile",
         roles: ["user"],
       },

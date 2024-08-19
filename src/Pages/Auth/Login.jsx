@@ -3,20 +3,19 @@ import logo from "/logo.png";
 
 const Login = () => {
   return (
-    <div className="w-full h-full flex bg-blue-400">
+    <div className="h-full flex bg-blue-400">
       <div className="w-8/12">
-        <div className="w-full flex gap-2 items-center ">
+        <div className="w-full flex gap-4 items-center ">
           <img src={logo} alt="logo" className="w-10" />
           {/* <h3 className="text-xl font-bold text-white uppercase text-center">
             nanded waghala city municipal corporation
           </h3> */}
+          <h1 className="text-white font-bold text-center text-3xl mt-2">
+            Welcome to Tree Census Survey
+          </h1>
         </div>
-        <div className="h-[100%] flex justify-center items-center">
-          <div>
-            <h1 className="text-white font-bold text-center text-3xl mb-2">
-              Welcome to Tree Census Survey
-            </h1>
-          </div>
+        <div className="flex justify-center items-center">
+          <div></div>
         </div>
       </div>
       <div className="w-4/12 flex flex-col justify-center items-center">
