@@ -56,12 +56,12 @@ const menuData = [
     subMenu: [
       {
         title: "Tree Cutting/Pruning",
-        link: "/settings/profile",
+        link: "/applications",
         roles: ["user"],
       },
       {
         title: "Payment Status",
-        link: "/settings/profile",
+        link: "/payments",
         roles: ["user"],
       },
     ],

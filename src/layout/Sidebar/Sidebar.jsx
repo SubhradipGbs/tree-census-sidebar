@@ -32,7 +32,7 @@ const Sidebar = () => {
 
   return (
     <div className="w-1/6 min-w-[200px]">
-      <div className="flex justify-end items-center mb-3 bg-blue-700 h-16 p-4">
+      <div className="flex justify-end items-center mb-3 bg-blue-700 h-[60px] p-4">
         <GiHamburgerMenu size={23} color="#fff" className="cursor-pointer" />
       </div>
       <div className="w-full">

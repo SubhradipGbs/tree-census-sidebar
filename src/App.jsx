@@ -6,6 +6,8 @@ import PublicRoute from "./layout/routes/PublicRoute";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import ApplicationForm from "./Pages/Forms/ApplicationsForm";
 import PaymentForm from "./Pages/Forms/PaymentForm";
+import Applicationts from "./Pages/Applications/Applicationts";
+import Payments from "./Pages/Applications/Payments";
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +20,8 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/forms" element={<ApplicationForm />} />
             <Route path="/payment-forms" element={<PaymentForm />} />
+            <Route path="/applications" element={<Applicationts />} />
+            <Route path="/payments" element={<Payments />} />
           </Route>
         </Route>
       </Routes>
