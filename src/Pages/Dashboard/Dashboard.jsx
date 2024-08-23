@@ -1,19 +1,19 @@
 import React from "react";
 import { MapCont, StatCard } from "../../Components";
 import { Typography } from "@material-tailwind/react";
-import Chart from "/public/chart.png";
+import Chart from "/chart.png";
 
 const Dashboard = () => {
   return (
     <div className="m-1">
       <section className="w-full flex flex-wrap gap-2 mb-3">
-        <div className="min-w-[300px] flex-1">
+        <div className="min-w-[250px] flex-1">
           <StatCard title={"Total No. of Trees"} count={2950} />
         </div>
-        <div className="min-w-[300px] flex-1">
+        <div className="min-w-[250px] flex-1">
           <StatCard title={"Total Area Surveyed"} count={2950} />
         </div>
-        <div className="min-w-[300px] flex-1">
+        <div className="min-w-[250px] flex-1">
           <StatCard title={"Total No. of Requests"} count={2950} />
         </div>
       </section>

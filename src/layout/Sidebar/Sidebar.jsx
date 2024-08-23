@@ -6,6 +6,7 @@ import menuData from "../../utils/menuData";
 import { filterMenu } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import MenuItem from "./MenuItem";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -13,7 +14,7 @@ const Sidebar = () => {
   const location = useLocation();
 
   const navigate = useNavigate();
-  const userRole = "user";
+  const userRole = useSelector((state) => state.auth.userRole);
   // const userRole = ["admin"];
 
   const toggleMenu = (menu, index) => {

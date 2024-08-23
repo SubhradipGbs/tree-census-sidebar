@@ -82,7 +82,7 @@ const Applicationts = () => {
             <Button
               size="sm"
               color="blue"
-              className="flex gap-1 items-center"
+              className="flex gap-2 items-center"
               onClick={() => {
                 handleClick(info.row.original);
               }}

@@ -67,7 +67,7 @@ const DataTable = ({ data, columns, filename, bordered }) => {
         </CSVLink>
       </div> */}
       <div className="w-full h-full overflow-scroll mb-3">
-        <table className="w-full min-w-max table-auto" border={true}>
+        <table className="w-full min-w-max table-auto text-xs" border={true}>
           <thead className="bg-gray-300">
             {table.getHeaderGroups().map((headergrp) => (
               <tr key={headergrp.id}>
@@ -75,7 +75,7 @@ const DataTable = ({ data, columns, filename, bordered }) => {
                   <th
                     key={header.id}
                     scope="col"
-                    className="px-4 py-2 min-w-[150px] max-w-[350px] border border-blue-gray-200 cursor-pointer text-center"
+                    className="px-4 py-2  max-w-[350px] border border-blue-gray-200 cursor-pointer text-center"
                   >
                     <div
                       className="flex justify-between items-center gap-5"

@@ -3,10 +3,9 @@ const withMT = require("@material-tailwind/react/utils/withMT");
 module.exports = withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      fontFamily: {
-        josephin: ["Josefin Sans", "sans - serif"],
-      },
+    fontFamily: {
+      josephin: ["Josefin Sans", "sans - serif"],
+      lato: ["Lato", "sans - serif"],
     },
   },
   plugins: [],

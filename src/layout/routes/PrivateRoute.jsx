@@ -2,11 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
-const PublicRoute = () => {
+const PrivateRoute = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const isAuthenticated = isLoggedIn || localStorage.getItem("token");
-
-  return isAuthenticated ? <Navigate to="/" /> : <Outlet />;
+  return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
 };
 
-export default PublicRoute;
+export default PrivateRoute;

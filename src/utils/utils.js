@@ -7,7 +7,7 @@ export const filterMenu = (menuData, userRoles) => {
         ...menu,
         subMenu: menu.subMenu
           ? menu.subMenu.filter((subMenu) =>
-              subMenu.roles.some((role) => userRoles.includes(role))
+              subMenu.roles.some((role) => userRoles === role)
             )
           : null,
       }))
