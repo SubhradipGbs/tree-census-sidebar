@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar/Sidebar";
 import Header from "./Header/Header";
 import { Outlet } from "react-router-dom";
+import "./main.css";
 
 const Main = () => {
   return (
@@ -11,7 +12,7 @@ const Main = () => {
       <Sidebar />
       <div className="w-5/6 flex flex-col">
         <Header />
-        <main className="w-full h-[calc(100vh-60px)] bg-gray-100 p-4 overflow-hidden overflow-y-auto">
+        <main className="w-full h-[calc(100vh-60px)] bg-gray-100 p-4 overflow-hidden overflow-y-auto main">
           <Outlet />
         </main>
         {/* <footer className="bg-gray-800 text-white p-4">Footer</footer> */}

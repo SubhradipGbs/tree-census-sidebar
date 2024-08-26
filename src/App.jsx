@@ -13,6 +13,7 @@ import AreaSurvey from "./Pages/Reports/AreaSurvey";
 import PaymentReport from "./Pages/Reports/PaymentReport";
 import PrivateRoute from "./layout/routes/PrivateRoute";
 import Users from "./Pages/UserReport/Users";
+import AsignUsers from "./Pages/UserReport/AsignUsers";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             <Route path="/area-survey" element={<AreaSurvey />} />
             <Route path="/payment-report" element={<PaymentReport />} />
             <Route path="/userlist" element={<Users />} />
-            <Route path="/user-assinments" element={<PaymentReport />} />
+            <Route path="/user-assinments" element={<AsignUsers />} />
           </Route>
         </Route>
       </Routes>

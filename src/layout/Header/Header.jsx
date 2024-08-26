@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "/logo.png";
-import { FaUser } from "react-icons/fa";
 import UserMenu from "./UserMenu";
 
 const Header = () => {
