@@ -5,28 +5,40 @@ import {
   DialogHeader,
   Typography,
 } from "@material-tailwind/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoClose, IoInformationCircleOutline } from "react-icons/io5";
 import DataTable from "../../Components/Datatable";
 import { treeData } from "../../utils/data";
 import { MapCont } from "../../Components";
 import { FaCross } from "react-icons/fa";
+import { useQuery } from "react-query";
+import { getAllTrees } from "../../utils/services";
+import { toast } from "react-toastify";
 
 const TreeSurvey = () => {
   const [open, setOpen] = useState(false);
+  const [trees,setTrees]=useState([]);
   const [current, setCurrent] = useState({});
   const handleOpen = () => setOpen(!open);
+
   const handleClick = (obj) => {
     setCurrent(obj);
     setOpen(true);
   };
+
+  const treesQuery = useQuery({
+    queryKey:["trees"],
+    queryFn:getAllTrees,
+    staleTime:2*60*1000
+  })
+
   const columns = [
-    {
-      header: "Sl. No.",
-      accessorKey: "slNo",
-      enableColumnFilter: false,
-      cell: (info) => info.renderValue(),
-    },
+    // {
+    //   header: "Sl. No.",
+    //   accessorKey: "index",
+    //   enableColumnFilter: false,
+    //   cell: (info) => info.renderValue(),
+    // },
     {
       header: "Tree Id",
       accessorKey: "tree_id",
@@ -39,32 +51,37 @@ const TreeSurvey = () => {
       cell: (info) => info.renderValue(),
     },
     {
-      header: "Species",
-      accessorKey: "species",
-      meta: { filterVariant: "select" },
-      cell: (info) => info.renderValue(),
-    },
-    {
       header: "Genera",
-      accessorKey: "genera",
+      accessorKey: "genre",
       cell: (info) => info.renderValue(),
     },
     {
       header: "Age (Yrs)",
       accessorKey: "age",
       meta: { filterVariant: "range" },
+      accessorFn: (row) => {
+        return parseInt(row.age);
+      },
       // enableColumnFilter: false,
       cell: (info) => info.renderValue(),
     },
     {
       header: "Girth",
       accessorKey: "girth",
-      enableColumnFilter: false,
+      meta: { filterVariant: "range" },
+      accessorFn: (row) => {
+        return parseInt(row.girth);
+      },
+      // enableColumnFilter: false,
       cell: (info) => info.renderValue(),
     },
     {
       header: "Height",
       accessorKey: "height",
+      meta: { filterVariant: "range" },
+      accessorFn: (row) => {
+        return parseInt(row.height);
+      },
       cell: (info) => info.renderValue(),
     },
     {
@@ -76,7 +93,7 @@ const TreeSurvey = () => {
     },
     {
       header: "Health",
-      accessorKey: "health",
+      accessorKey: "health_status",
       cell: (info) => info.renderValue(),
     },
     {
@@ -102,6 +119,21 @@ const TreeSurvey = () => {
       },
     },
   ];
+
+  useEffect(() => {
+    if (treesQuery.isError) {
+      toast.error("Failed to fetch Trees");
+    } else if (!treesQuery.isLoading && treesQuery.data) {
+      if (treesQuery.data.statusCode === 1) {
+        setTrees(treesQuery.data.data);
+        toast.success("data found");
+      } else {
+        toast.error(treesQuery.data.message);
+      }
+    }
+  }, [treesQuery.isError, treesQuery.data, treesQuery.isLoading]);
+
+
   return (
     <div className="w-full">
       <div>
@@ -149,20 +181,6 @@ const TreeSurvey = () => {
                   </div>
                   <div className="flex mb-2">
                     <label htmlFor="inputEmail3" className="w-1/3">
-                      Species
-                    </label>
-                    <div className="w-2/3">
-                      <input
-                        type="text"
-                        disabled
-                        className="form-control"
-                        id="inputEmail3"
-                        value={current?.species}
-                      />
-                    </div>
-                  </div>
-                  <div className="flex mb-2">
-                    <label htmlFor="inputEmail3" className="w-1/3">
                       Genera
                     </label>
                     <div className="w-2/3">
@@ -171,7 +189,7 @@ const TreeSurvey = () => {
                         disabled
                         className="form-control"
                         id="inputEmail3"
-                        value={current?.genera}
+                        value={current?.genre}
                       />
                     </div>
                   </div>
@@ -238,15 +256,15 @@ const TreeSurvey = () => {
                 <Typography variant="h5" className="underline mb-2">
                   Location:
                 </Typography>
-                <div className="d-flex justify-content-center align-items-center">
-                  {/* <Image src="/kolkata_map.jpg" width={400} height={360} /> */}
+                {/* <div className="d-flex justify-content-center align-items-center">
+                  <Image src="/kolkata_map.jpg" width={400} height={360} />
                   {current.location && (
                     <MapCont
                       location={current.location.split(",")}
                       data={`${current.tree_id} <br/> ${current.tree_name}`}
                     />
                   )}
-                </div>
+                </div> */}
               </div>
               <div className="min-w-[200px] flex-1">
                 <Typography variant="h5" className="underline mb-2">
@@ -275,7 +293,7 @@ const TreeSurvey = () => {
         <Typography variant="h5" className="mb-3 underline font-josephin">
           Tree Survey Reports:
         </Typography>
-        <DataTable data={treeData} columns={columns} />
+        <DataTable data={trees} columns={columns} />
       </div>
     </div>
   );
