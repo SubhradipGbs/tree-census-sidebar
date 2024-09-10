@@ -4,7 +4,7 @@ const menuData = [
   {
     title: "Dashboard",
     icon: <FaTachometerAlt size={18} />,
-    roles: [1, 2],
+    roles: [1, 3],
     link: "/",
   },
   {
@@ -35,34 +35,34 @@ const menuData = [
   {
     title: "Forms",
     icon: <FaClipboardList size={20} />,
-    roles: [2],
+    roles: [3],
     subMenu: [
       {
         title: "Tree Cutting/Pruning",
         link: "/forms",
-        roles: [2],
+        roles: [3],
       },
       {
         title: "Payments",
         link: "/payment-forms",
-        roles: [2],
+        roles: [3],
       },
     ],
   },
   {
     title: "Applications",
     icon: <FaClipboardList size={20} />,
-    roles: [2],
+    roles: [3],
     subMenu: [
       {
         title: "Tree Cutting/Pruning",
         link: "/applications",
-        roles: [2],
+        roles: [3],
       },
       {
         title: "Payment Status",
         link: "/payments",
-        roles: [2],
+        roles: [3],
       },
     ],
   },

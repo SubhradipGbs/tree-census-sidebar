@@ -17,7 +17,7 @@ import { toast } from "react-toastify";
 
 const TreeSurvey = () => {
   const [open, setOpen] = useState(false);
-  const [trees,setTrees]=useState([]);
+  const [trees, setTrees] = useState([]);
   const [current, setCurrent] = useState({});
   const handleOpen = () => setOpen(!open);
 
@@ -27,10 +27,10 @@ const TreeSurvey = () => {
   };
 
   const treesQuery = useQuery({
-    queryKey:["trees"],
-    queryFn:getAllTrees,
-    staleTime:2*60*1000
-  })
+    queryKey: ["trees"],
+    queryFn: getAllTrees,
+    staleTime: 2 * 60 * 1000,
+  });
 
   const columns = [
     // {
@@ -132,7 +132,6 @@ const TreeSurvey = () => {
       }
     }
   }, [treesQuery.isError, treesQuery.data, treesQuery.isLoading]);
-
 
   return (
     <div className="w-full">
@@ -256,15 +255,16 @@ const TreeSurvey = () => {
                 <Typography variant="h5" className="underline mb-2">
                   Location:
                 </Typography>
-                {/* <div className="d-flex justify-content-center align-items-center">
-                  <Image src="/kolkata_map.jpg" width={400} height={360} />
+                <div className="d-flex justify-content-center align-items-center">
+                  {/* <Image src="/kolkata_map.jpg" width={400} height={360} /> */}
                   {current.location && (
                     <MapCont
-                      location={current.location.split(",")}
-                      data={`${current.tree_id} <br/> ${current.tree_name}`}
+                      location={[current.latitude, current.longitude]}
+                      // data={`${current.tree_id} <br/> ${current.tree_name}`}
+                      data={`${current.tree_name}`}
                     />
                   )}
-                </div> */}
+                </div>
               </div>
               <div className="min-w-[200px] flex-1">
                 <Typography variant="h5" className="underline mb-2">

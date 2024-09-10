@@ -14,6 +14,8 @@ import PaymentReport from "./Pages/Reports/PaymentReport";
 import PrivateRoute from "./layout/routes/PrivateRoute";
 import Users from "./Pages/UserReport/Users";
 import AsignUsers from "./Pages/UserReport/AsignUsers";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
 
 function App() {
   return (
@@ -37,6 +39,16 @@ function App() {
           </Route>
         </Route>
       </Routes>
+      <ToastContainer
+        autoClose={3000}
+        draggable={false}
+        position="top-right"
+        hideProgressBar={true}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnHover
+      />
     </BrowserRouter>
   );
 }

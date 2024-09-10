@@ -5,6 +5,7 @@ import { Button, Typography } from "@material-tailwind/react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../store/reducers/auth";
 import { loginByAuth } from "../../utils/services";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -15,8 +16,18 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await loginByAuth(obj);
-      localStorage.setItem("token", response.data.token);
-      dispatch(loginUser({ userRole: 1, userId: 1 }));
+      if (response.status === 1) {
+        toast.success("Successfully LoggedIn");
+        localStorage.setItem("token", response.data.token);
+        dispatch(
+          loginUser({
+            userRole: response.data?.roleId,
+            userId: response.data?.user_id,
+          })
+        );
+      } else {
+        toast.error(response.data.message);
+      }
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -26,8 +37,8 @@ const Login = () => {
 
   const loginForm = useFormik({
     initialValues: {
-      mobileNo: "",
-      password: "",
+      mobileNo: "8910213145",
+      password: "Aa@124",
     },
     onSubmit: (values) => {
       console.log(values);
