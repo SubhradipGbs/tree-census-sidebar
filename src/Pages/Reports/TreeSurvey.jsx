@@ -8,9 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { IoClose, IoInformationCircleOutline } from "react-icons/io5";
 import DataTable from "../../Components/Datatable";
-import { treeData } from "../../utils/data";
 import { MapCont } from "../../Components";
-import { FaCross } from "react-icons/fa";
 import { getAllTrees } from "../../utils/services";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -85,6 +83,16 @@ const TreeSurvey = () => {
       cell: (info) => info.renderValue(),
     },
     {
+      header: "Latitude",
+      accessorKey: "latitude",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: "Longitude",
+      accessorKey: "longitude",
+      cell: (info) => info.renderValue(),
+    },
+    {
       header: "Location",
       accessorKey: "location",
       enableColumnFilter: false,
@@ -106,7 +114,7 @@ const TreeSurvey = () => {
           <span className="d-flex justify-content-center">
             <Button
               color="blue"
-              size="sm"
+              size="xs"
               className="flex gap-2"
               onClick={() => {
                 handleClick(info.row.original);

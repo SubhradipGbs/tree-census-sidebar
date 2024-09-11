@@ -22,7 +22,7 @@ export const getAllTrees = async () => {
   return response.data;
 };
 
-export const treeApplication = async (obj) => {
+export const addTreeApplication = async (obj) => {
   const access_token = localStorage.getItem("token");
   const response = await axios.post(`${url}/application/add-new`,obj);
   return response.data;
@@ -31,5 +31,11 @@ export const treeApplication = async (obj) => {
 export const treeApplicationByUser = async (obj) => {
   const access_token = localStorage.getItem("token");
   const response = await axios.post(`${url}/application/get-by-user`,obj);
+  return response.data;
+};
+
+export const treeApplications = async (obj) => {
+  const access_token = localStorage.getItem("token");
+  const response = await axios.get(`${url}/application/get-all`);
   return response.data;
 };

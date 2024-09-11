@@ -104,7 +104,7 @@ const DataTable = ({ data, columns, filename, bordered }) => {
                       )}
                     </div>
                     {filterOpen[header.column.id] && (
-                      <span>
+                      <span className="flex items-center mt-2">
                         <Filter column={header.column} />
                       </span>
                     )}
@@ -214,7 +214,7 @@ function Filter({ column }) {
 
   return filterVariant === "range" ? (
     <div>
-      <div className="flex space-x-2">
+      <div className="flex">
         <DebouncedInput
           type="number"
           min={Number(column.getFacetedMinMaxValues()?.[0] ?? "")}
@@ -248,7 +248,7 @@ function Filter({ column }) {
     </div>
   ) : filterVariant === "select" ? (
     <select
-      className="form-select-sm"
+      className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs"
       onChange={(e) => column.setFilterValue(e.target.value)}
       value={columnFilterValue?.toString()}
     >

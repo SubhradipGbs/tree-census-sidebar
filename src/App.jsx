@@ -17,6 +17,7 @@ import AsignUsers from "./Pages/UserReport/AsignUsers";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ManageApplication from "./Pages/Applications/ManageApplication";
 
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ function App() {
               <Route path="/payment-report" element={<PaymentReport />} />
               <Route path="/userlist" element={<Users />} />
               <Route path="/user-assinments" element={<AsignUsers />} />
+              <Route path="/manage-application" element={<ManageApplication/>}/>
             </Route>
           </Route>
         </Routes>

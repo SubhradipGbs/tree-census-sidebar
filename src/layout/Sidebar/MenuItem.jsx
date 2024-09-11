@@ -54,7 +54,7 @@ const MenuItem = ({ item }) => {
       >
         <div className="flex items-center my-auto">
           {item.icon}
-          <Typography className="ml-2 text-sm">{item.title}</Typography>
+          <Typography className="ml-2 text-sm text-nowrap">{item.title}</Typography>
         </div>
         {item.subMenu && item.subMenu.length > 0 && (
           <div>{expanded ? <FaChevronUp /> : <FaChevronDown />}</div>
@@ -71,7 +71,7 @@ const MenuItem = ({ item }) => {
                   handleClick(ch.link);
                 }}
               >
-                <Typography className="text-sm hover:text-blue-800 hover:font-bold">
+                <Typography className="text-nowrap text-sm hover:text-blue-800 hover:font-bold">
                   {ch.title}
                 </Typography>
               </li>

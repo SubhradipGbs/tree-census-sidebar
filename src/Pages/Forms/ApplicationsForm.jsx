@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { useFormik } from "formik";
 import React from "react";
-import { treeApplication } from "../../utils/services";
+import { addTreeApplication } from "../../utils/services";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
@@ -17,7 +17,7 @@ const ApplicationForm = () => {
   const queryClient = useQueryClient();
   const apllyTree = useMutation({
     mutationFn: (data) => {
-      return treeApplication(data);
+      return addTreeApplication(data);
     },
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ["application"] });
@@ -43,8 +43,7 @@ const ApplicationForm = () => {
     },
     onSubmit: (values) => {
       console.log(values);
-      formik.setFieldValue("appliedBy", userId);
-      apllyTree.mutate(formik.values);
+      apllyTree.mutate({...values,appliedBy:userId});
     },
   });
 

@@ -30,7 +30,7 @@ const menuData = [
     title: "Manage Applications",
     icon: <FaClipboardList size={20} />,
     roles: [1],
-    link: "/",
+    link: "/manage-application",
   },
   {
     title: "Forms",
