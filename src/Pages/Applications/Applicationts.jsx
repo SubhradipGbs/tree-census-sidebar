@@ -1,16 +1,54 @@
 import { Button, Typography } from "@material-tailwind/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import DataTable from "../../Components/Datatable";
 import { applicationData } from "../../utils/data";
+import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import { treeApplicationByUser } from "../../utils/services";
+import { toast } from "react-toastify";
 
 const Applicationts = () => {
+  const userId = useSelector((state) => state.auth.userId);
+  const [applications, setApplications] = useState([]);
+
   const [current, setCurrent] = useState({});
   const [show, setShow] = useState(false);
+
+  const { data, isSuccess } = useQuery({
+    queryKey: ["selfApplication"],
+    queryFn: treeApplicationByUser({ userId }),
+    staleTime: 2 * 3600 * 1000,
+  });
+
+
   const handleClick = (obj) => {
     setCurrent(obj);
     setShow(true);
   };
+
+  useEffect(()=>{
+    console.log(data);
+  },[data])
+
+  // useEffect(() => {
+  //   if (applicationQuery.isError) {
+  //     toast.error("Failed to fetch Applications");
+  //   } else if (!applicationQuery.isLoading && applicationQuery.data) {
+  //     if (applicationQuery.data.statusCode === 1) {
+  //       setApplications(applicationQuery.data.data);
+  //       toast.success("data found");
+  //     } else {
+  //       toast.error(applicationQuery.data.message);
+  //     }
+  //   }
+  // }, [
+  //   applicationQuery.isError,
+  //   applicationQuery.data,
+  //   applicationQuery.isLoading,
+  //   userId,
+  // ]);
+
   const column = [
     {
       header: "Sl. No.",
@@ -24,7 +62,7 @@ const Applicationts = () => {
     },
     {
       header: "Date",
-      accessorKey: "date",
+      accessorKey: "createdAt",
       cell: (info) => info.renderValue(),
     },
     {
@@ -34,7 +72,7 @@ const Applicationts = () => {
     },
     {
       header: "Address",
-      accessorKey: "address",
+      accessorKey: "location",
       cell: (info) => info.renderValue(),
     },
     {
@@ -53,21 +91,13 @@ const Applicationts = () => {
       cell: (info) => info.renderValue(),
     },
     {
-      header: "Status",
-      accessorKey: "status",
+      header: "Survey Status",
+      accessorKey: "survey_status",
       cell: (info) => {
-        if (info.row.original.status == "Completed") {
-          return (
-            <span className="text-green-700">{info.row.original.status}</span>
-          );
-        } else if (info.row.original.status == "Pending") {
-          return (
-            <span className="text-yellow-900">{info.row.original.status}</span>
-          );
-        } else {
-          return (
-            <span className="text-red-700">{info.row.original.status}</span>
-          );
+        if (info.row.original.survey_status == 1) {
+          return <span className="text-green-700">Complete</span>;
+        } else if (info.row.original.survey_status == 0) {
+          return <span className="text-yellow-900">Pending</span>;
         }
       },
     },
@@ -100,7 +130,7 @@ const Applicationts = () => {
         <Typography variant="h5" className="mb-3 underline font-josephin">
           Tree Cutting/Pruning Requests:
         </Typography>
-        <DataTable columns={column} data={applicationData} bordered={true} />
+        {/* <DataTable columns={column} data={data} bordered={true} /> */}
       </div>
     </div>
   );

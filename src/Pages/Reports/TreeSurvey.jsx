@@ -11,8 +11,8 @@ import DataTable from "../../Components/Datatable";
 import { treeData } from "../../utils/data";
 import { MapCont } from "../../Components";
 import { FaCross } from "react-icons/fa";
-import { useQuery } from "react-query";
 import { getAllTrees } from "../../utils/services";
+import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 const TreeSurvey = () => {

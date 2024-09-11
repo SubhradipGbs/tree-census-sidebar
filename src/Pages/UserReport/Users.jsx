@@ -1,7 +1,7 @@
 import { Typography } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import DataTable from "../../Components/Datatable";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getAllUsers } from "../../utils/services";
 import { toast } from "react-toastify";
 

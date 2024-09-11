@@ -21,3 +21,15 @@ export const getAllTrees = async () => {
   const response = await axios.get(`${url}/trees/get-all`);
   return response.data;
 };
+
+export const treeApplication = async (obj) => {
+  const access_token = localStorage.getItem("token");
+  const response = await axios.post(`${url}/application/add-new`,obj);
+  return response.data;
+};
+
+export const treeApplicationByUser = async (obj) => {
+  const access_token = localStorage.getItem("token");
+  const response = await axios.post(`${url}/application/get-by-user`,obj);
+  return response.data;
+};

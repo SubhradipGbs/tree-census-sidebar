@@ -37,8 +37,8 @@ const Login = () => {
 
   const loginForm = useFormik({
     initialValues: {
-      mobileNo: "8910213145",
-      password: "Aa@124",
+      mobileNo: "8910213144",
+      password: "Aa@123",
     },
     onSubmit: (values) => {
       console.log(values);
@@ -47,7 +47,7 @@ const Login = () => {
   });
 
   return (
-    <div className="w-screen h-screen p-2 bg-blue-400">
+    <div className="w-screen h-screen p-1 lg:p-2 bg-blue-400">
       <div className="w-full h-full flex flex-col md:flex-row md:justify-center items-center md:items-start">
         <div className="w-8/12">
           <div className="w-full flex flex-col md:flex-row gap-4 items-center mt-4 md:mt-1">
@@ -65,7 +65,7 @@ const Login = () => {
         </div>
         <div className="min-w-4/12 flex flex-col justify-center items-center my-auto">
           <form
-            className="bg-white shadow-md min-w-[75%] p-10 rounded-2xl"
+            className="bg-white shadow-md min-w-[75%] p-5 lg:p-10 rounded-2xl"
             onSubmit={loginForm.handleSubmit}
           >
             {/* <div className="mb-4 flex justify-between">
@@ -129,11 +129,14 @@ const Login = () => {
             </p> */}
             </div>
             <div className="flex items-center justify-between gap-3">
-              <Button size="md" color="blue" type="submit" loading={loading}>
+              {/* <Button size="md" color="blue" type="submit" loading={loading} >
                 Sign In
-              </Button>
+              </Button> */}
+              <button type="submit" className="text-white text-nowrap bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Sign In
+              </button>
               <a
-                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                className="inline-block align-baseline font-bold text-sm text-blue-500 text-nowrap hover:text-blue-800"
                 href="/"
               >
                 Forgot Password?
