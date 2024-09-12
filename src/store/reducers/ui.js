@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   sidebarOpen: false,
   sidebarCollapsed: false,
+  drawerOpen: false,
 };
 
 export const uiSlice = createSlice({
@@ -15,9 +16,11 @@ export const uiSlice = createSlice({
     toggleCollapse: (state) => {
       state.sidebarCollapsed = !state.sidebarCollapsed;
     },
+    toggleDrawer: (state) => {
+      state.drawerOpen = !state.drawerOpen;
+    },
   },
 });
 
-
-export const {toggleCollapse,toggleOpen}=uiSlice.actions;
+export const { toggleCollapse, toggleOpen, toggleDrawer } = uiSlice.actions;
 export default uiSlice.reducer;

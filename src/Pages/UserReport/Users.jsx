@@ -6,7 +6,7 @@ import { getAllUsers } from "../../utils/services";
 import { toast } from "react-toastify";
 
 const Users = () => {
-  const [users,setUsers]=useState([]);
+  const [users, setUsers] = useState([]);
   const userQuery = useQuery({
     queryKey: ["users"],
     queryFn: getAllUsers,

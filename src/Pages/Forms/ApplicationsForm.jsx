@@ -20,7 +20,7 @@ const ApplicationForm = () => {
       return addTreeApplication(data);
     },
     onSuccess: (response) => {
-      queryClient.invalidateQueries({ queryKey: ["application"] });
+      queryClient.invalidateQueries({ queryKey: ["selfApplication"] });
       if (response.statusCode == 1) {
         toast.success(response.message);
         formik.resetForm();

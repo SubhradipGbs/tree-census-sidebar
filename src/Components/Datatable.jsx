@@ -61,14 +61,14 @@ const DataTable = ({ data, columns, filename, bordered }) => {
         <CSVLink
           data={table.getRowModel().rows.map((row) => row._valuesCache)}
           filename={filename || "data"}
-          className="flex justify-center items-center gap-2 focus:outline-none text-white bg-green-700 hover:bg-green-800  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          className="flex justify-center items-center gap-2 focus:outline-none text-white bg-green-700 hover:bg-green-800  font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         >
-          <FaDownload/>
+          <FaDownload />
           Export
         </CSVLink>
       </div>
       <div className="w-full h-full overflow-scroll mb-3">
-        <table className="w-full min-w-max table-auto text-xs" >
+        <table className="w-full min-w-max table-auto text-xs">
           <thead className="bg-gray-300">
             {table.getHeaderGroups().map((headergrp) => (
               <tr key={headergrp.id}>

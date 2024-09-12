@@ -54,13 +54,9 @@ const UserMenu = () => {
           </MenuItem>
 
           <hr className="my-2 border-blue-gray-50" />
-          <MenuItem className="flex items-center gap-2">
+          <MenuItem className="flex items-center gap-2" onClick={logout}>
             <LuLogOut size={16} />
-            <Typography
-              variant="small"
-              className="font-medium"
-              onClick={logout}
-            >
+            <Typography variant="small" className="font-medium">
               Sign Out
             </Typography>
           </MenuItem>

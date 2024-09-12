@@ -10,26 +10,26 @@ import { toast } from "react-toastify";
 
 const Applicationts = () => {
   const userId = useSelector((state) => state.auth.userId);
-  const [applications, setApplications] = useState([]);
 
   const [current, setCurrent] = useState({});
   const [show, setShow] = useState(false);
 
-  const { data, isSuccess } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["selfApplication"],
-    queryFn: treeApplicationByUser({ userId }),
-    staleTime: 2 * 3600 * 1000,
+    queryFn: () => treeApplicationByUser(userId),
+    staleTime: 5 * 60 * 1000,
+    cacheTime: 10 * 60 * 1000,
+    enabled: !!userId,
   });
-
 
   const handleClick = (obj) => {
     setCurrent(obj);
     setShow(true);
   };
 
-  useEffect(()=>{
-    console.log(data);
-  },[data])
+  // useEffect(()=>{
+  //   console.log(data);
+  // },[data])
 
   // useEffect(() => {
   //   if (applicationQuery.isError) {
@@ -46,7 +46,6 @@ const Applicationts = () => {
   //   applicationQuery.isError,
   //   applicationQuery.data,
   //   applicationQuery.isLoading,
-  //   userId,
   // ]);
 
   const column = [
@@ -63,11 +62,6 @@ const Applicationts = () => {
     {
       header: "Date",
       accessorKey: "createdAt",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: "Tree",
-      accessorKey: "tree",
       cell: (info) => info.renderValue(),
     },
     {
@@ -112,25 +106,26 @@ const Applicationts = () => {
             <Button
               size="sm"
               color="blue"
-              className="flex gap-2 items-center"
+              className="flex gap-1 items-center"
               onClick={() => {
                 handleClick(info.row.original);
               }}
             >
-              <IoInformationCircleOutline size={15} /> Details
+              <IoInformationCircleOutline size={18} /> Details
             </Button>
           </span>
         );
       },
     },
   ];
+  
   return (
     <div className="w-full">
       <div className="p-2 bg-white rounded-md shadow-md">
         <Typography variant="h5" className="mb-3 underline font-josephin">
           Tree Cutting/Pruning Requests:
         </Typography>
-        {/* <DataTable columns={column} data={data} bordered={true} /> */}
+        <DataTable columns={column} data={data?.data || []} />
       </div>
     </div>
   );

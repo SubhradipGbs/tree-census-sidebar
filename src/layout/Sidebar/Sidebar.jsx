@@ -6,40 +6,45 @@ import menuData from "../../utils/menuData";
 import { filterMenu } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import MenuItem from "./MenuItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleOpen } from "../../store/reducers/ui";
 
 const Sidebar = () => {
-  const [activeMenu, setActiveMenu] = useState(null);
   const [filteredMenu, setFilteredMenu] = useState([]);
-  const [isSidebarOpen,setIsSidebarOpen]=useState(false)
-  const location = useLocation();
+  const isSidebarOpen = useSelector((state) => state.ui.sidebarOpen);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const userRole = useSelector((state) => state.auth.userRole);
   // const userRole = ["admin"];
 
-  const toggleMenu = (menu, index) => {
-    if (menu.link) {
-      navigate(menu.link);
-      setActiveMenu(activeMenu === index ? null : index);
-    } else {
-      setActiveMenu(activeMenu === index ? null : index);
-    }
-  };
+  // const toggleMenu = (menu, index) => {
+  //   if (menu.link) {
+  //     navigate(menu.link);
+  //     setActiveMenu(activeMenu === index ? null : index);
+  //   } else {
+  //     setActiveMenu(activeMenu === index ? null : index);
+  //   }
+  // };
 
   useEffect(() => {
     const menu = filterMenu(menuData, userRole);
     setFilteredMenu(menu);
   }, []);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
 
   return (
-    <div className={`${isSidebarOpen ? 'w-[64px]':'w-1/6'}`}>
-      <div className="flex justify-end items-center mb-3 bg-blue-700 h-[60px] p-4">
-        <GiHamburgerMenu size={23} color="#fff" className="cursor-pointer" onClick={toggleSidebar}/>
+    <div className={`${isSidebarOpen ? "w-[64px]" : "w-1/6"} hidden lg:block transition-all`}>
+      <div className="flex justify-start items-center mb-3 bg-blue-700 h-[60px] p-4">
+        <GiHamburgerMenu
+          size={23}
+          color="#fff"
+          className="cursor-pointer"
+          onClick={()=>{dispatch(toggleOpen())}}
+        />
       </div>
       <div className="w-full">
         <ul className="px-2">

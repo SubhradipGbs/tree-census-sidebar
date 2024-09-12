@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Typography } from "@material-tailwind/react";
+import { useSelector } from "react-redux";
 
 const MenuItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false);
@@ -9,6 +10,7 @@ const MenuItem = ({ item }) => {
   const [isOneOfChildrenActive, setIsOneOfChildrenActive] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const isSidebarOpen = useSelector((state) => state.ui.sidebarOpen);
 
   const calculateIsActive = () => {
     setIsMainActive(false);
@@ -54,14 +56,18 @@ const MenuItem = ({ item }) => {
       >
         <div className="flex items-center my-auto">
           {item.icon}
-          <Typography className="ml-2 text-sm text-nowrap">{item.title}</Typography>
+          <Typography
+            className={`${isSidebarOpen ? "ml-7" : "ml-2"} transition-all text-sm text-nowrap`}
+          >
+            {item.title}
+          </Typography>
         </div>
         {item.subMenu && item.subMenu.length > 0 && (
           <div>{expanded ? <FaChevronUp /> : <FaChevronDown />}</div>
         )}
       </div>
       {!!expanded && item.subMenu && !!item.subMenu.length > 0 && (
-        <div>
+        <div className={`${isSidebarOpen ? 'w-20':'w-100'}`}>
           <ul className="ms-9 list-disc">
             {item.subMenu.map((ch, subIndex) => (
               <li

@@ -9,17 +9,21 @@ import React, { useEffect, useState } from "react";
 import { IoClose, IoInformationCircleOutline } from "react-icons/io5";
 import DataTable from "../../Components/Datatable";
 import { MapCont } from "../../Components";
-import { getAllTrees } from "../../utils/services";
+import { getAllTrees, treeImagesByTree } from "../../utils/services";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 const TreeSurvey = () => {
   const [open, setOpen] = useState(false);
   const [trees, setTrees] = useState([]);
+  const [images,setImages]= useState([]);
   const [current, setCurrent] = useState({});
   const handleOpen = () => setOpen(!open);
 
-  const handleClick = (obj) => {
+  const handleClick = async(obj) => {
+    const resp = await treeImagesByTree(obj.tree_id);
+    console.log(resp);
+    setImages(resp.data);
     setCurrent(obj);
     setOpen(true);
   };
@@ -112,16 +116,14 @@ const TreeSurvey = () => {
       cell: (info) => {
         return (
           <span className="d-flex justify-content-center">
-            <Button
-              color="blue"
-              size="xs"
-              className="flex gap-2"
+            <button
+              className="flex justiy-center items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none"
               onClick={() => {
                 handleClick(info.row.original);
               }}
             >
-              <IoInformationCircleOutline size={15} /> Details
-            </Button>
+              <IoInformationCircleOutline size={18} /> Details
+            </button>
           </span>
         );
       },
@@ -279,18 +281,14 @@ const TreeSurvey = () => {
                   Images:
                 </Typography>
                 <div className="grid grid-cols-2 gap-3" style={{ gap: "10px" }}>
-                  <img
-                    src="/tree.jpeg"
-                    className=" border-black border shadow rounded-md"
-                  />
-                  <img
-                    src="/tree.jpeg"
-                    className=" border-black border shadow rounded-md"
-                  />
-                  <img
-                    src="/tree.jpeg"
-                    className=" border-black border shadow rounded-md"
-                  />
+                  {/* {
+                    !!images && images.map((image)=>(
+                      <img
+                        src="http://192.168.0.110:3000/uploads/1726056138232-28921.jpg"
+                        className="border-1 border-black border shadow rounded-md"
+                      />
+                    ))
+                  } */}
                 </div>
               </div>
             </div>
@@ -301,6 +299,7 @@ const TreeSurvey = () => {
         <Typography variant="h5" className="mb-3 underline font-josephin">
           Tree Survey Reports:
         </Typography>
+        {/* <img src="http://localhost:3000/uploads/1726057596101-77734.jpg" /> */}
         <DataTable data={trees} columns={columns} />
       </div>
     </div>

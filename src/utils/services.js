@@ -24,18 +24,28 @@ export const getAllTrees = async () => {
 
 export const addTreeApplication = async (obj) => {
   const access_token = localStorage.getItem("token");
-  const response = await axios.post(`${url}/application/add-new`,obj);
+  const response = await axios.post(`${url}/application/add-new`, obj);
   return response.data;
 };
 
-export const treeApplicationByUser = async (obj) => {
+export const treeApplicationByUser = async (userId) => {
   const access_token = localStorage.getItem("token");
-  const response = await axios.post(`${url}/application/get-by-user`,obj);
+  const response = await axios.post(`${url}/application/get-by-user`, {
+    userId,
+  });
   return response.data;
 };
 
 export const treeApplications = async (obj) => {
   const access_token = localStorage.getItem("token");
   const response = await axios.get(`${url}/application/get-all`);
+  return response.data;
+};
+
+export const treeImagesByTree = async (treeId) => {
+  const access_token = localStorage.getItem("token");
+  const response = await axios.post(`${url}/trees/img-by-tree`, {
+    treeId,
+  });
   return response.data;
 };
